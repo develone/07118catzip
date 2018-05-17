@@ -1,4 +1,4 @@
-# ICOZIP
+# CATZIP
 
 ICO Zip is intended to be a demonstration repository, demonstrating how the
 [ZipCPU](https://github.com/ZipCPU/zipcpu) may be placed onto an
@@ -35,9 +35,14 @@ progress" to a working system.  Still ... a lot has been done, a not all of it
 is yet in the repository.  I chose to share this repository, even with the work
 unfinished, so that I can share some of the very basic RTL tests I've done
 and reference them on [my blog](http://zipcpu.com).
-
+arm-wbregs
 As of 20170526, the [basic](rtl/basic), [uart](rtl/uart), and
 [pmodled](rtl/pmodleds) examples are fully functional.
 While much work has taken place on the parallel port testing modules
 (using sw/netpport)--they just aren't reliable enough (yet) to depend upon.
+
+
+As of 2018051718
+arm-netpport & arm-wbregs are working using speechpp.bin
+
 
