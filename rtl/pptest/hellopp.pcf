@@ -1,0 +1,19 @@
+set_io i_clk     C8			# 100 MHz clock
+#
+# LED's
+set_io o_ledg[0] A9
+set_io o_ledg[1] B8
+set_io o_ledr    B7
+#
+# Give us access to the RPi PPort connector
+set_io  i_pp_dir     C9
+set_io  i_pp_clk     C10
+set_io io_pp_data[0] D9
+set_io io_pp_data[1] D7
+set_io io_pp_data[2] D4
+set_io io_pp_data[3] A7
+set_io io_pp_data[4] A6
+set_io io_pp_data[5] C7
+set_io io_pp_data[6] C6
+set_io io_pp_data[7] D6
+set_io o_pp_clkfb    D5   # set_io io_pp_data[8] D5
