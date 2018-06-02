@@ -1,11 +1,11 @@
 ################################################################################
 ##
-## Filename: 	rtl/icozip/Makefile
+## Filename: 	rtl/catzip/Makefile
 ##
 ## Project:	ICO Zip, iCE40 ZipCPU demonstration project
 ##
 ## Purpose:	This makefile builds both the final bit file for loading, as
-##		well as a verilator simulation of the entire icozip project.
+##		well as a verilator simulation of the entire catzip project.
 ##
 ## Creator:	Dan Gisselquist, Ph.D.
 ##		Gisselquist Technology, LLC
@@ -45,10 +45,10 @@ FBDIR := .
 VDIRFB:= $(FBDIR)/obj-$(ARCH)
 VOBJ := obj-$(ARCH)
 include auto.mk
-PCFFILE := icozip.pcf
+PCFFILE := catzip.pcf
 # toplevel.v rxuart.v txuart.v
 # rtcdate.v wbubus.v
-ICOSRCS := toplevel.v main.v $(WBUBUS) $(PPBUS) $(PPORT) cpu/icontrol.v memdev.v ufifo.v
+ICOSRCS := toplevel.v main.v $(WBUBUS) $(PPBUS) $(PPORT) cpu/catntrol.v memdev.v ufifo.v
 
 #
 # Verilator build from the main level.  This is not the toplevel verilog
@@ -100,25 +100,25 @@ $(VDIRFB)/V%__ALL.a: $(VDIRFB)/V%.mk
 #
 #
 .PHONY: bin
-bin: icozip.bin
+bin: catzip.bin
 #
 #
-icozip.blif: toplevel.v $(VFLIST)
-	echo yosys -p 'synth_ice40 -blif icozip.blif -top toplevel' $^ |tee simple.log
-	yosys -p 'synth_ice40 -blif icozip.blif -top toplevel' $^ |tee -a simple.log
+catzip.blif: toplevel.v $(VFLIST)
+	echo yosys -p 'synth_ice40 -blif catzip.blif -top toplevel' $^ |tee simple.log
+	yosys -p 'synth_ice40 -blif catzip.blif -top toplevel' $^ |tee -a simple.log
 
 .PHONY: yosys
-yosys: icozip.blif
+yosys: catzip.blif
 
-icozip.asc: $(PCFFILE) icozip.blif
-	arachne-pnr -d 8k -r -p $(PCFFILE) icozip.blif -o $@
+catzip.asc: $(PCFFILE) catzip.blif
+	arachne-pnr -d 8k -r -p $(PCFFILE) catzip.blif -o $@
 
 .PHONY: arachne
-arachne: icozip.asc
+arachne: catzip.asc
 
-icozip.bin: icozip.asc
-	icepack icozip.asc icozip.bin
-	icetime -d hx8k -c 40 icozip.asc
+catzip.bin: catzip.asc
+	icepack catzip.asc catzip.bin
+	icetime -d hx8k -c 40 catzip.asc
 
 #
 #
@@ -127,9 +127,9 @@ icozip.bin: icozip.asc
 #
 simple.blif: simple.ys simplefirst.v
 	yosys -p 'synth_ice40 -blif simple.blif' simplefirst.v |tee simple.log
-simple.asc: icozip.pcf simple.blif
+simple.asc: catzip.pcf simple.blif
 
-	arachne-pnr -d 8k -p icozip.pcf simple.blif -o simple.asc
+	arachne-pnr -d 8k -p catzip.pcf simple.blif -o simple.asc
 simple.bin: simple.asc
 	icetime -d hx8k -c 100 simple.asc
 	icepack simple.asc simple.bin
@@ -145,6 +145,6 @@ clean:
 
 
 
-# yosys -p synth_ice40 -blif icozip.blif toplevel.v main.v wbubus/wbconsole.v wbubus/wbubus.v wbubus/wbucompactlines.v wbubus/wbucompress.v wbubus/wbuconsole.v wbubus/wbudecompress.v wbubus/wbudeword.v wbubus/wbuexec.v wbubus/wbufifo.v wbubus/wbuidleint.v wbubus/wbuinput.v wbubus/wbuoutput.v wbubus/wbureadcw.v wbubus/wbusixchar.v wbubus/wbutohex.v cpu/busdelay.v cpu/cpudefs.v cpu/cpuops.v cpu/dblfetch.v cpu/div.v cpu/icontrol.v cpu/idecode.v cpu/memops.v cpu/pfcache.v cpu/pipefetch.v cpu/pipemem.v cpu/prefetch.v cpu/wbarbiter.v cpu/wbdblpriarb.v cpu/wbdmac.v cpu/wbpriarbiter.v cpu/wbwatchdog.v cpu/zipbones.v cpu/zipcounter.v cpu/zipcpu.v cpu/zipjiffies.v cpu/zipsystem.v cpu/ziptimer.v ../pport/ppio.v ../pport/pport.v ../pport/wbpport.v memdev.v ufifo.v
-# arachne-pnr -d 8k -p icozip.pcf icozip.blif -o icozip.asc
-# icetime -d hx8k -c 75 icozip.asc
+# yosys -p synth_ice40 -blif catzip.blif toplevel.v main.v wbubus/wbconsole.v wbubus/wbubus.v wbubus/wbucompactlines.v wbubus/wbucompress.v wbubus/wbuconsole.v wbubus/wbudecompress.v wbubus/wbudeword.v wbubus/wbuexec.v wbubus/wbufifo.v wbubus/wbuidleint.v wbubus/wbuinput.v wbubus/wbuoutput.v wbubus/wbureadcw.v wbubus/wbusixchar.v wbubus/wbutohex.v cpu/busdelay.v cpu/cpudefs.v cpu/cpuops.v cpu/dblfetch.v cpu/div.v cpu/catntrol.v cpu/idecode.v cpu/memops.v cpu/pfcache.v cpu/pipefetch.v cpu/pipemem.v cpu/prefetch.v cpu/wbarbiter.v cpu/wbdblpriarb.v cpu/wbdmac.v cpu/wbpriarbiter.v cpu/wbwatchdog.v cpu/zipbones.v cpu/zipcounter.v cpu/zipcpu.v cpu/zipjiffies.v cpu/zipsystem.v cpu/ziptimer.v ../pport/ppio.v ../pport/pport.v ../pport/wbpport.v memdev.v ufifo.v
+# arachne-pnr -d 8k -p catzip.pcf catzip.blif -o catzip.asc
+# icetime -d hx8k -c 75 catzip.asc
