@@ -56,9 +56,8 @@ all: leddigits
 leddigits:	leddigits.bin
 
 
-leddigits.blif:   leddigits
-hellopp.blif:    hellopp.v  ../pport/pport.v ../pport/ppio.v
-linepp.blif:     linepp.v   ../pport/pport.v ../pport/ppio.v
+leddigits.blif:   leddigits.v
+
 
 .PHONY: clean
 clean:
