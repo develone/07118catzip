@@ -41,10 +41,10 @@
 ################################################################################
 ##
 ##
-set_io i_clk     R9			# 100 MHz clock
+set_io i_clk     C8	#R9			# 100 MHz clock
 #
 # LED's
-set_io o_ledg[0] C8
+set_io o_ledg[0] A9	#C8
 set_io o_ledg[1] F7
 set_io o_ledr    K9
 #
