@@ -45,25 +45,39 @@ set_io i_clk     C8	#R9			# 100 MHz clock
 #
 # LED's
 set_io o_ledg[0] A9	#C8
-set_io o_ledg[1] F7
-set_io o_ledr    K9
+set_io o_ledg[1] B8			#icoboard F7 mapped to Catboard used make speechpp to test
+set_io o_ledr    B7			#icoboard K9 mapped to Catboard used make speechpp to test
+#set_io o_ledg[1] F7
+#set_io o_ledr    K9
 #
 # Buttons
-set_io i_btn[0]		P13	# IO104 // Also used to select boot options(?)
-set_io i_btn[1]		K11	# IO103 // Also used to select boot options(?)
+set_io i_btn[0]		A16	#P13	# IO104 // Also used to select boot options(?)
+set_io i_btn[1]		B9	#K11	# IO103 // Also used to select boot options(?)
+
+set_io  i_pp_dir     R3		#icoboard C9 mapped to Catboard used make speechpp to test
+set_io  i_pp_clk     T8		#icoboard C10 mapped to Catboard used make speechpp to test
+set_io io_pp_data[0] R4		#icoboard D9 mapped to Catboard used make speechpp to test
+set_io io_pp_data[1] T3		#icoboard D7 mapped to Catboard used make speechpp to test  
+set_io io_pp_data[2] T13	#icoboard D4 mapped to Catboard used make speechpp to test
+set_io io_pp_data[3] T6		#icoboard A7 mapped to Catboard used make speechpp to test
+set_io io_pp_data[4] T5		#icoboard A6 mapped to Catboard used make speechpp to test
+set_io io_pp_data[5] P9		#icoboard C7 mapped to Catboard used make speechpp to test
+set_io io_pp_data[6] T9		#icoboard C6 mapped to Catboard used make speechpp to test
+set_io io_pp_data[7] T11	#icoboard D6 mapped to Catboard used make speechpp to test
+set_io o_pp_clkfb    T7		#icoboard D5   # set_io io_pp_data[8] D5 mapped to Catboard used make speechpp to test
 #
 # Give us access to the RPi PPort connector
-set_io  i_pp_dir     C9
-set_io  i_pp_clk     C10
-set_io io_pp_data[0] D9
-set_io io_pp_data[1] D7
-set_io io_pp_data[2] D4
-set_io io_pp_data[3] A7
-set_io io_pp_data[4] A6
-set_io io_pp_data[5] C7
-set_io io_pp_data[6] C6
-set_io io_pp_data[7] D6
-set_io o_pp_clkfb    D5   # set_io io_pp_data[8] D5
+#set_io  i_pp_dir     C9
+#set_io  i_pp_clk     C10
+#set_io io_pp_data[0] D9
+#set_io io_pp_data[1] D7
+#set_io io_pp_data[2] D4
+#set_io io_pp_data[3] A7
+#set_io io_pp_data[4] A6
+#set_io io_pp_data[5] C7
+#set_io io_pp_data[6] C6
+#set_io io_pp_data[7] D6
+#set_io o_pp_clkfb    D5   # set_io io_pp_data[8] D5
 
 #
 # Turn PMod-1 into a debug port
@@ -82,7 +96,8 @@ set_io o_dbgwires[6] A2		# 194( A9), 199 (B9)	-- ports, as per
 set_io o_dbgwires[5] C3		# 186(A10), 183 (B10)	-- schematic
 set_io o_dbgwires[4] B4		# 187(A11), 184 (B11)
 
-set_io o_dbgwires[3] B7 # BOT,edg	# 28
+set_io o_dbgwires[3]  J2 #HDR1-4
+#set_io o_dbgwires[3] B7 # BOT,edg	# 28
 set_io o_dbgwires[2] B6		#
 set_io o_dbgwires[1] B3		#
 set_io o_dbgwires[0] B5		#
@@ -96,6 +111,10 @@ set_io o_dbgwires[0] B5		#
 # set_io i_spi_miso	P12
 #
 #
+#from oled on catboard
+#set_io rpi_sck R11	#H11 	pin 23 BCM11_SCLK
+#set_io rpi_cs  T7	#D4 IOT_224
+#set_io rpi_mosi P11	#A6	pin 19 BCM10_MOSI 
 # RPI SPI interface
 # set_io i_spi_sck	h11	# RPI SPI lines, no dedicated CS_N line
 # set_io i_spi_mosi	A6	# But this is a pport data line ... ??
