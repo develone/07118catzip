@@ -35,8 +35,7 @@
 ################################################################################
 ##
 ##
-#all: blinky pmodtest clktest dimmer
-all: blinky  clktest dimmer 
+all: blinky pmodtest clktest dimmer
 
 # GNU Make automatic variables (since I can never remember these ...)
 # $@	- name of the target
