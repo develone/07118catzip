@@ -5,32 +5,24 @@
 #ifndef DESIGN_H
 #define DESIGN_H
 
-#define	WBUBUS_MASTER
+#timescale	1ps / 1ps
 #define	INCLUDE_ZIPCPU
-#define	BUSPIC_ACCESS
+#define	WBUBUS_MASTER
 #define	GPIO_ACCESS
 #define	BKRAM_ACCESS
+#define	BUSPIC_ACCESS
 #define	BUSCONSOLE_ACCESS
+#ifdef	INCLUDE_ZIPCPU
+#else	// INCLUDE_ZIPCPU
+#endif	// INCLUDE_ZIPCPU
+#ifdef	GPIO_ACCESS
+#else	// GPIO_ACCESS
+#endif	// GPIO_ACCESS
 #ifdef	WBUBUS_MASTER
 #ifndef	BUSPIC_ACCESS
 #endif
 #else	// WBUBUS_MASTER
 #endif	// WBUBUS_MASTER
-#ifdef	INCLUDE_ZIPCPU
-#else	// INCLUDE_ZIPCPU
-#endif	// INCLUDE_ZIPCPU
-#ifdef	BUSPIC_ACCESS
-#else	// BUSPIC_ACCESS
-#endif	// BUSPIC_ACCESS
-#ifdef	GPIO_ACCESS
-#else	// GPIO_ACCESS
-#endif	// GPIO_ACCESS
-#ifdef	BKRAM_ACCESS
-#else	// BKRAM_ACCESS
-#endif	// BKRAM_ACCESS
-#ifdef	BUSCONSOLE_ACCESS
-#else	// BUSCONSOLE_ACCESS
-#endif	// BUSCONSOLE_ACCESS
 #ifdef	INCLUDE_ZIPCPU
 #else
 #endif	// INCLUDE_ZIPCPU
@@ -44,5 +36,14 @@
 #endif
 #ifdef	INCLUDE_ZIPCPU
 #endif
+#ifdef	BKRAM_ACCESS
+#else	// BKRAM_ACCESS
+#endif	// BKRAM_ACCESS
+#ifdef	BUSPIC_ACCESS
+#else	// BUSPIC_ACCESS
+#endif	// BUSPIC_ACCESS
+#ifdef	BUSCONSOLE_ACCESS
+#else	// BUSCONSOLE_ACCESS
+#endif	// BUSCONSOLE_ACCESS
 
 #endif // DESIGN_H
