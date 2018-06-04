@@ -5,7 +5,7 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 BASECLASS	automaster_tb.cpp	58;"	d	file:
-BASECLASS	main_tb.cpp	48;"	d	file:
+BASECLASS	main_tb.cpp	52;"	d	file:
 BUSW	memsim.h	/^	typedef	unsigned int	BUSW;$/;"	t	class:MEMSIM
 BYTESWAP_H	byteswap.h	43;"	d
 DBLPIPEBUFLEN	pportsim.cpp	59;"	d	file:
@@ -30,7 +30,7 @@ TESTB	testb.h	/^template <class VA>	class TESTB {$/;"	c
 TESTB_H	testb.h	43;"	d
 ZIPELF_H	zipelf.h	39;"	d
 apply	memsim.cpp	/^void	MEMSIM::apply(const uchar wb_cyc, const uchar wb_stb, const uchar wb_we,$/;"	f	class:MEMSIM
-block_ram	main_tb.cpp	82;"	d	file:
+block_ram	main_tb.cpp	89;"	d	file:
 buildswap	byteswap.cpp	/^buildswap(const unsigned char *p) {$/;"	f
 buildword	byteswap.cpp	/^buildword(const unsigned char *p) {$/;"	f
 byteswap	byteswap.cpp	/^byteswap(uint32_t v) {$/;"	f
@@ -39,25 +39,25 @@ byteswapbuf	byteswap.cpp	/^byteswapbuf(int ln, uint32_t *buf) {$/;"	f
 byteswapbuf	byteswap.h	70;"	d
 close	main_tb.cpp	/^	void	close(void) {$/;"	f	class:MAINTB
 closetrace	testb.h	/^	virtual	void	closetrace(void) {$/;"	f	class:TESTB
-cpu_alu_ce	main_tb.cpp	78;"	d	file:
-cpu_break	main_tb.cpp	62;"	d	file:
-cpu_bus_err	main_tb.cpp	71;"	d	file:
-cpu_cmd_addr	main_tb.cpp	70;"	d	file:
-cpu_cmd_halt	main_tb.cpp	63;"	d	file:
-cpu_gie	main_tb.cpp	66;"	d	file:
-cpu_ibus_err	main_tb.cpp	72;"	d	file:
-cpu_iflags	main_tb.cpp	67;"	d	file:
-cpu_ipc	main_tb.cpp	64;"	d	file:
-cpu_mem_rdaddr	main_tb.cpp	74;"	d	file:
-cpu_mem_wraddr	main_tb.cpp	75;"	d	file:
-cpu_new_pc	main_tb.cpp	79;"	d	file:
-cpu_op_sim	main_tb.cpp	76;"	d	file:
-cpu_op_valid	main_tb.cpp	77;"	d	file:
-cpu_regs	main_tb.cpp	69;"	d	file:
-cpu_sim_immv	main_tb.cpp	80;"	d	file:
-cpu_ubus_err	main_tb.cpp	73;"	d	file:
-cpu_uflags	main_tb.cpp	68;"	d	file:
-cpu_upc	main_tb.cpp	65;"	d	file:
+cpu_alu_ce	main_tb.cpp	85;"	d	file:
+cpu_break	main_tb.cpp	69;"	d	file:
+cpu_bus_err	main_tb.cpp	78;"	d	file:
+cpu_cmd_addr	main_tb.cpp	77;"	d	file:
+cpu_cmd_halt	main_tb.cpp	70;"	d	file:
+cpu_gie	main_tb.cpp	73;"	d	file:
+cpu_ibus_err	main_tb.cpp	79;"	d	file:
+cpu_iflags	main_tb.cpp	74;"	d	file:
+cpu_ipc	main_tb.cpp	71;"	d	file:
+cpu_mem_rdaddr	main_tb.cpp	81;"	d	file:
+cpu_mem_wraddr	main_tb.cpp	82;"	d	file:
+cpu_new_pc	main_tb.cpp	86;"	d	file:
+cpu_op_sim	main_tb.cpp	83;"	d	file:
+cpu_op_valid	main_tb.cpp	84;"	d	file:
+cpu_regs	main_tb.cpp	76;"	d	file:
+cpu_sim_immv	main_tb.cpp	87;"	d	file:
+cpu_ubus_err	main_tb.cpp	80;"	d	file:
+cpu_uflags	main_tb.cpp	75;"	d	file:
+cpu_upc	main_tb.cpp	72;"	d	file:
 debug	pportsim.h	/^	void	debug(const bool dbg) { m_debug = dbg; }$/;"	f	class:PPORTSIM
 done	testb.h	/^	virtual bool	done(void) {$/;"	f	class:TESTB
 dump	main_tb.cpp	/^	void dump(const uint32_t *regp) {$/;"	f	class:MAINTB

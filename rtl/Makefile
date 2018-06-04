@@ -1,10 +1,12 @@
 ################################################################################
-## 
-## Filename: 	rtl/basic/Makefile
+##
+## Filename:	Makefile
 ##
 ## Project:	ICO Zip, iCE40 ZipCPU demonsrtation project
 ##
-## Purpose:	To direct the build of the files in the rtl/basic directory!
+## Purpose:	Simply coordinates builds in the various subdirectories of
+##		rtl.
+##
 ##
 ## Creator:	Dan Gisselquist, Ph.D.
 ##		Gisselquist Technology, LLC
@@ -35,32 +37,51 @@
 ################################################################################
 ##
 ##
-#all: blinky pmodtest clktest dimmer
-all: blinky  clktest dimmer 
+.PHONY: all
+all:	basic uart pptest catzip # icozip
+# all:	verilated sw bench bit
+SUBMAKE := $(MAKE) --no-print-directory -C
+#
+.PHONY: basic
+basic:
+	$(SUBMAKE) basic
 
-# GNU Make automatic variables (since I can never remember these ...)
-# $@	- name of the target
-# $<	- Name of the first prerequisite
-# $^	- Names of all the prerequisites
-%.blif: %.v
-	yosys -p 'synth_ice40 -blif $@' $<
-%.asc: %.blif %.pcf
-	arachne-pnr -d 8k -p $*.pcf -o $@ $<
-%.bin: %.asc
-	icetime -d hx8k -c 100 $<
-	icepack $< $@
+.PHONY: uart
+uart:
+	$(SUBMAKE) uart
 
-.PHONY: blinky pmodtest clktest
-blinky:     blinky.bin
-clktest:    clktest.bin
-pmodtest:   pmodtest.bin
-dimmer:     dimmer.bin
+.PHONY: pmodleds
+pmodleds:
+	$(SUBMAKE) pmodleds
 
-.PHONY: load
-load: blinky.bin
-	icoprog -p < blinky.bin # Needs sudo
+.PHONY: pptest
+pptest:
+	$(SUBMAKE) pptest
 
-clean:
-	rm -f *.blif *.asc *.bin
-	# rm -rf obj_dir
+.PHONY: icozip
+icozip:
+	$(SUBMAKE) icozip
 
+
+.PHONY: clean
+clean:	clean-basic clean-uart clean-pptest clean-pmodleds
+
+.PHONY: clean-basic
+clean-basic:
+	$(SUBMAKE) basic clean
+
+.PHONY: clean-uart
+clean-uart:
+	$(SUBMAKE) uart clean
+
+.PHONY: clean-pptest
+clean-pptest:
+	$(SUBMAKE) pptest clean
+
+.PHONY: clean-pmodleds
+clean-pmodleds:
+	$(SUBMAKE) pmodleds clean
+
+.PHONY: clean-icozip
+clean-icozip:
+	$(SUBMAKE) icozip clean
