@@ -51,7 +51,7 @@ DATA := global.txt bkram.txt buserr.txt clock.txt			\
 	hbconsole.txt gpio.txt zipbones.txt
 	# Not used: flash.txt rtclite.txt
 
-AUTOFPGA := ../../../autofpga/trunk/sw/autofpga
+AUTOFPGA := ../../autofpga/sw/autofpga
 
 .PHONY: data
 data: $(AUTOFPGA) $(DATA)
@@ -59,8 +59,8 @@ data: $(AUTOFPGA) $(DATA)
 
 .PHONY: install
 install: data
-	$(call notify-on-change,toplevel.v,../rtl/icozip)
-	$(call notify-on-change,main.v,../rtl/icozip)
+	$(call notify-on-change,toplevel.v,../rtl/catzip)
+	$(call notify-on-change,main.v,../rtl/catzip)
 	$(call notify-on-change,regdefs.h,../sw/host/)
 	$(call notify-on-change,regdefs.cpp,../sw/host/)
 	$(call notify-on-change,board.h,../sw/board/)
