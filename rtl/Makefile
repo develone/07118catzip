@@ -38,7 +38,7 @@
 ##
 ##
 .PHONY: all
-all:	basic uart pptest catzip # icozip
+all:	basic uart pptest catzip leddigits sdram switch_leds # icozip
 # all:	verilated sw bench bit
 SUBMAKE := $(MAKE) --no-print-directory -C
 #
@@ -62,9 +62,20 @@ pptest:
 catzip:
 	$(SUBMAKE) catzip
 
+.PHONY: leddigits
+leddigits:
+	$(SUBMAKE) leddigits
+	
+.PHONY: sdram
+sdram:
+	$(SUBMAKE) sdram
+
+.PHONY: switch_leds
+switch_leds:
+	$(SUBMAKE) switch_leds	
 
 .PHONY: clean
-clean:	clean-basic clean-uart clean-pptest clean-pmodleds clean-catzip
+clean:	clean-basic clean-uart clean-pptest clean-pmodleds clean-catzip clean-leddigits clean-sdram clean-switch_leds
 
 .PHONY: clean-basic
 clean-basic:
@@ -85,3 +96,16 @@ clean-pmodleds:
 .PHONY: clean-catzip
 clean-catzip:
 	$(SUBMAKE) catzip clean
+
+.PHONY: clean-leddigits
+clean-leddigits:
+	$(SUBMAKE) leddigits clean
+
+.PHONY: clean-sdram
+clean-sdram:
+	$(SUBMAKE) sdram clean
+
+.PHONY: clean-switch_leds
+clean-switch_leds:
+	$(SUBMAKE) switch_leds clean		
+	
