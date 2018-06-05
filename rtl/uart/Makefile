@@ -47,7 +47,7 @@ all: helloworld speechfifo
 %.asc: %.blif %.pcf
 	arachne-pnr -d 8k -p $*.pcf -o $@ $<
 %.bin: %.asc
-	icetime -d hx8k -c 100 $<
+	#icetime -d hx8k -c 100 $<
 	icepack $< $@
 
 .PHONY: helloworld speechfifo

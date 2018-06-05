@@ -58,13 +58,13 @@ pmodleds:
 pptest:
 	$(SUBMAKE) pptest
 
-.PHONY: icozip
-icozip:
-	$(SUBMAKE) icozip
+.PHONY: catzip
+catzip:
+	$(SUBMAKE) catzip
 
 
 .PHONY: clean
-clean:	clean-basic clean-uart clean-pptest clean-pmodleds
+clean:	clean-basic clean-uart clean-pptest clean-pmodleds clean-catzip
 
 .PHONY: clean-basic
 clean-basic:
@@ -82,6 +82,6 @@ clean-pptest:
 clean-pmodleds:
 	$(SUBMAKE) pmodleds clean
 
-.PHONY: clean-icozip
-clean-icozip:
-	$(SUBMAKE) icozip clean
+.PHONY: clean-catzip
+clean-catzip:
+	$(SUBMAKE) catzip clean
