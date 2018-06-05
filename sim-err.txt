@@ -1,0 +1,215 @@
+Building dependency file(s)
+g++  -MM wbregs.cpp netpport.cpp hexbus.cpp llcomms.cpp regdefs.cpp byteswap.cpp > obj-arm/xdepends.txt
+g++ -g -Wall -I. -I../../rtl -c wbregs.cpp -o obj-arm/wbregs.o
+In file included from wbregs.cpp:52:0:
+hexbus.h: In destructor ‘virtual HEXBUS::~HEXBUS()’:
+hexbus.h:88:3: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   if (m_buf) delete[] m_buf; m_buf = NULL;
+   ^~
+hexbus.h:88:30: note: ...this statement, but the latter is misleadingly indented as if it is guarded by the ‘if’
+   if (m_buf) delete[] m_buf; m_buf = NULL;
+                              ^~~~~
+g++ -g -Wall -I. -I../../rtl -c hexbus.cpp -o obj-arm/hexbus.o
+In file included from hexbus.cpp:62:0:
+hexbus.h: In destructor ‘virtual HEXBUS::~HEXBUS()’:
+hexbus.h:88:3: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   if (m_buf) delete[] m_buf; m_buf = NULL;
+   ^~
+hexbus.h:88:30: note: ...this statement, but the latter is misleadingly indented as if it is guarded by the ‘if’
+   if (m_buf) delete[] m_buf; m_buf = NULL;
+                              ^~~~~
+g++ -g -Wall -I. -I../../rtl -c llcomms.cpp -o obj-arm/llcomms.o
+g++ -g -Wall -I. -I../../rtl -c regdefs.cpp -o obj-arm/regdefs.o
+g++ -g -Wall -I. -I../../rtl -c byteswap.cpp -o obj-arm/byteswap.o
+g++ -g -Wall -I. -I../../rtl obj-arm/wbregs.o obj-arm/hexbus.o obj-arm/llcomms.o obj-arm/regdefs.o obj-arm/byteswap.o  -o arm-wbregs
+g++ -g -Wall -I. -I../../rtl -c netpport.cpp -o obj-arm/netpport.o
+g++ -g -Wall -I. -I../../rtl obj-arm/netpport.o -lwiringPi -o arm-netpport
+# make --no-print-directory -C sw/board
+make --no-print-directory -C sim/verilated
+Building dependency file
+In file included from automaster_tb.cpp:49:0:
+../../rtl/catzip/design.h:8:2: error: invalid preprocessing directive #timescale
+ #timescale 1ps / 1ps
+  ^~~~~~~~~
+g++ -Og -g -Wall -I../../rtl/catzip -I../../rtl/catzip/obj-arm/ -I../../rtl/catzip -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -I../../rtl/catzip -I../../rtl/catzip/obj-arm/ -I../../rtl/catzip -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -c automaster_tb.cpp -o obj-arm/automaster_tb.o
+In file included from automaster_tb.cpp:49:0:
+../../rtl/catzip/design.h:8:2: error: invalid preprocessing directive #timescale
+ #timescale 1ps / 1ps
+  ^~~~~~~~~
+In file included from automaster_tb.cpp:52:0:
+testb.h: In member function ‘virtual void TESTB<VA>::tick()’:
+testb.h:109:45: error: call of overloaded ‘dump(long unsigned int)’ is ambiguous
+    if (m_trace) m_trace->dump(m_time_ps - 22);
+                                             ^
+In file included from testb.h:47:0,
+                 from automaster_tb.cpp:52:
+/usr/share/verilator/include/verilated_vcd_c.h:425:10: note: candidate: void VerilatedVcdC::dump(vluint64_t)
+     void dump (vluint64_t timeui) { m_sptrace.dump(timeui); }
+          ^~~~
+/usr/share/verilator/include/verilated_vcd_c.h:428:10: note: candidate: void VerilatedVcdC::dump(double)
+     void dump (double timestamp) { dump((vluint64_t)timestamp); }
+          ^~~~
+/usr/share/verilator/include/verilated_vcd_c.h:429:10: note: candidate: void VerilatedVcdC::dump(vluint32_t)
+     void dump (vluint32_t timestamp) { dump((vluint64_t)timestamp); }
+          ^~~~
+/usr/share/verilator/include/verilated_vcd_c.h:430:10: note: candidate: void VerilatedVcdC::dump(int)
+     void dump (int timestamp) { dump((vluint64_t)timestamp); }
+          ^~~~
+In file included from automaster_tb.cpp:52:0:
+testb.h:114:39: error: call of overloaded ‘dump(long unsigned int&)’ is ambiguous
+   if (m_trace) m_trace->dump(m_time_ps);
+                                       ^
+In file included from testb.h:47:0,
+                 from automaster_tb.cpp:52:
+/usr/share/verilator/include/verilated_vcd_c.h:425:10: note: candidate: void VerilatedVcdC::dump(vluint64_t)
+     void dump (vluint64_t timeui) { m_sptrace.dump(timeui); }
+          ^~~~
+/usr/share/verilator/include/verilated_vcd_c.h:428:10: note: candidate: void VerilatedVcdC::dump(double)
+     void dump (double timestamp) { dump((vluint64_t)timestamp); }
+          ^~~~
+/usr/share/verilator/include/verilated_vcd_c.h:429:10: note: candidate: void VerilatedVcdC::dump(vluint32_t)
+     void dump (vluint32_t timestamp) { dump((vluint64_t)timestamp); }
+          ^~~~
+/usr/share/verilator/include/verilated_vcd_c.h:430:10: note: candidate: void VerilatedVcdC::dump(int)
+     void dump (int timestamp) { dump((vluint64_t)timestamp); }
+          ^~~~
+In file included from automaster_tb.cpp:52:0:
+testb.h:118:32: error: call of overloaded ‘dump(long unsigned int)’ is ambiguous
+    m_trace->dump(m_time_ps + 44);
+                                ^
+In file included from testb.h:47:0,
+                 from automaster_tb.cpp:52:
+/usr/share/verilator/include/verilated_vcd_c.h:425:10: note: candidate: void VerilatedVcdC::dump(vluint64_t)
+     void dump (vluint64_t timeui) { m_sptrace.dump(timeui); }
+          ^~~~
+/usr/share/verilator/include/verilated_vcd_c.h:428:10: note: candidate: void VerilatedVcdC::dump(double)
+     void dump (double timestamp) { dump((vluint64_t)timestamp); }
+          ^~~~
+/usr/share/verilator/include/verilated_vcd_c.h:429:10: note: candidate: void VerilatedVcdC::dump(vluint32_t)
+     void dump (vluint32_t timestamp) { dump((vluint64_t)timestamp); }
+          ^~~~
+/usr/share/verilator/include/verilated_vcd_c.h:430:10: note: candidate: void VerilatedVcdC::dump(int)
+     void dump (int timestamp) { dump((vluint64_t)timestamp); }
+          ^~~~
+In file included from automaster_tb.cpp:59:0:
+main_tb.cpp: In member function ‘virtual void MAINTB::tick()’:
+main_tb.cpp:83:20: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__op_sim’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__op_sim’?
+ #define cpu_op_sim v__DOT__swic__DOT__thecpu__DOT__op_sim
+                    ^
+main_tb.cpp:83:20: note: in definition of macro ‘cpu_op_sim’
+ #define cpu_op_sim v__DOT__swic__DOT__thecpu__DOT__op_sim
+                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:84:22: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__op_valid’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__op_valid’?
+ #define cpu_op_valid v__DOT__swic__DOT__thecpu__DOT__op_valid
+                      ^
+main_tb.cpp:84:22: note: in definition of macro ‘cpu_op_valid’
+ #define cpu_op_valid v__DOT__swic__DOT__thecpu__DOT__op_valid
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:85:20: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__alu_ce’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__alu_ce’?
+ #define cpu_alu_ce v__DOT__swic__DOT__thecpu__DOT__alu_ce
+                    ^
+main_tb.cpp:85:20: note: in definition of macro ‘cpu_alu_ce’
+ #define cpu_alu_ce v__DOT__swic__DOT__thecpu__DOT__alu_ce
+                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:86:20: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__new_pc’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__new_pc’?
+ #define cpu_new_pc v__DOT__swic__DOT__thecpu__DOT__new_pc
+                    ^
+main_tb.cpp:86:20: note: in definition of macro ‘cpu_new_pc’
+ #define cpu_new_pc v__DOT__swic__DOT__thecpu__DOT__new_pc
+                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:87:22: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__op_sim_immv’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__op_sim_immv’?
+ #define cpu_sim_immv v__DOT__swic__DOT__thecpu__DOT__op_sim_immv
+                      ^
+main_tb.cpp:87:22: note: in definition of macro ‘cpu_sim_immv’
+ #define cpu_sim_immv v__DOT__swic__DOT__thecpu__DOT__op_sim_immv
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:158:15: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__cpu_break’; did you mean ‘main__DOT__swic__DOT__cpu_break’?
+   if (m_core->v__DOT__swic__DOT__cpu_break) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:76:18: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__regset’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__regset’?
+ #define cpu_regs v__DOT__swic__DOT__thecpu__DOT__regset
+                  ^
+main_tb.cpp:76:18: note: in definition of macro ‘cpu_regs’
+ #define cpu_regs v__DOT__swic__DOT__thecpu__DOT__regset
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp: In member function ‘bool MAINTB::load(uint32_t, const char*, uint32_t)’:
+main_tb.cpp:89:19: error: ‘class Vmain’ has no member named ‘v__DOT__bkrami__DOT__mem’; did you mean ‘main__DOT__bkrami__DOT__mem’?
+ #define block_ram v__DOT__bkrami__DOT__mem
+                   ^
+main_tb.cpp:229:20: note: in expansion of macro ‘block_ram’
+    memcpy(&m_core->block_ram[start], bswapd, wlen);
+                    ^~~~~~~~~
+main_tb.cpp: In member function ‘bool MAINTB::gie()’:
+main_tb.cpp:73:18: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__r_gie’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__r_gie’?
+ #define cpu_gie  v__DOT__swic__DOT__thecpu__DOT__r_gie
+                  ^
+main_tb.cpp:73:18: note: in definition of macro ‘cpu_gie’
+ #define cpu_gie  v__DOT__swic__DOT__thecpu__DOT__r_gie
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp: In member function ‘void MAINTB::dump(const uint32_t*)’:
+main_tb.cpp:74:20: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__w_iflags’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__w_iflags’?
+ #define cpu_iflags v__DOT__swic__DOT__thecpu__DOT__w_iflags
+                    ^
+main_tb.cpp:74:20: note: in definition of macro ‘cpu_iflags’
+ #define cpu_iflags v__DOT__swic__DOT__thecpu__DOT__w_iflags
+                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:75:20: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__w_uflags’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__w_uflags’?
+ #define cpu_uflags v__DOT__swic__DOT__thecpu__DOT__w_uflags
+                    ^
+main_tb.cpp:75:20: note: in definition of macro ‘cpu_uflags’
+ #define cpu_uflags v__DOT__swic__DOT__thecpu__DOT__w_uflags
+                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp: In member function ‘void MAINTB::execsim(uint32_t)’:
+main_tb.cpp:76:18: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__regset’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__regset’?
+ #define cpu_regs v__DOT__swic__DOT__thecpu__DOT__regset
+                  ^
+main_tb.cpp:76:18: note: in definition of macro ‘cpu_regs’
+ #define cpu_regs v__DOT__swic__DOT__thecpu__DOT__regset
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:71:18: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__ipc’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__ipc’?
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^
+main_tb.cpp:71:18: note: in definition of macro ‘cpu_ipc’
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:71:18: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__ipc’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__ipc’?
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^
+main_tb.cpp:71:18: note: in definition of macro ‘cpu_ipc’
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:71:18: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__ipc’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__ipc’?
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^
+main_tb.cpp:71:18: note: in definition of macro ‘cpu_ipc’
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:72:18: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__r_upc’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__r_upc’?
+ #define cpu_upc  v__DOT__swic__DOT__thecpu__DOT__r_upc
+                  ^
+main_tb.cpp:72:18: note: in definition of macro ‘cpu_upc’
+ #define cpu_upc  v__DOT__swic__DOT__thecpu__DOT__r_upc
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+automaster_tb.cpp: In function ‘int main(int, char**)’:
+main_tb.cpp:71:18: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__ipc’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__ipc’?
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^
+main_tb.cpp:71:18: note: in definition of macro ‘cpu_ipc’
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:71:18: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__thecpu__DOT__ipc’; did you mean ‘main__DOT__swic__DOT__thecpu__DOT__ipc’?
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^
+main_tb.cpp:71:18: note: in definition of macro ‘cpu_ipc’
+ #define cpu_ipc  v__DOT__swic__DOT__thecpu__DOT__ipc
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main_tb.cpp:70:22: error: ‘class Vmain’ has no member named ‘v__DOT__swic__DOT__cmd_halt’; did you mean ‘main__DOT__swic__DOT__cmd_halt’?
+ #define cpu_cmd_halt v__DOT__swic__DOT__cmd_halt
+                      ^
+automaster_tb.cpp:165:15: note: in expansion of macro ‘cpu_cmd_halt’
+   tb->m_core->cpu_cmd_halt = 0;
+               ^~~~~~~~~~~~
+Makefile:75: recipe for target 'obj-arm/automaster_tb.o' failed
+make[1]: *** [obj-arm/automaster_tb.o] Error 1
+Makefile:163: recipe for target 'sim' failed
+make: *** [sim] Error 2
