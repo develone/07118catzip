@@ -52,7 +52,7 @@ module	clktest(i_clk, o_ledg, o_ledr);
 	reg [31:0]	ctr;
 	initial ctr = 0;
 	
-	wire	clk_66mhz, pll_locked;
+	wire	clk_25mhz, pll_locked;
 	SB_PLL40_CORE #(
 		.FEEDBACK_PATH("SIMPLE"),
 		.DELAY_ADJUSTMENT_MODE_FEEDBACK("FIXED"),
@@ -60,25 +60,25 @@ module	clktest(i_clk, o_ledg, o_ledr);
 		.PLLOUT_SELECT("GENCLK"),
 		.FDA_FEEDBACK(4'b1111),
 		.FDA_RELATIVE(4'b1111),
-		.DIVR(4'd8),		// Divide by (DIVR+1)
-		.DIVQ(3'd4),		// Divide by 2^(DIVQ)
-		.DIVF(7'd94),		// Multiply by (DIVF+1)
+		.DIVR(4'b0000),		// Divide by (DIVR+1)
+		.DIVQ(7'b0000111),		// Divide by 2^(DIVQ)
+		.DIVF(3'b101),		// Multiply by (DIVF+1)
 		.FILTER_RANGE(3'b001)
 	) plli (
 		.REFERENCECLK    (i_clk        ),
-		.PLLOUTCORE     (clk_66mhz    ),
+		.PLLOUTCORE     (clk_25mhz    ),
 		.LOCK           (pll_locked  ),
 		.BYPASS         (1'b0         ),
 		.RESETB         (1'b1         )
 	);
 
-	assign	s_clk = clk_66mhz;
+	assign	s_clk = clk_25mhz;
 	
 	always @(posedge s_clk)
-		{pps, ctr} <= ctr + 32'd65;	// Valid if CLKRATE = 66MHz
+		//{pps, ctr} <= ctr + 32'd65;	// Valid if CLKRATE = 66MHz
 		//{pps, ctr} <= ctr + 32'd43;	// Valid if CLKRATE = 100MHz
 		// {pps, ctr} <= ctr + 32'd89;  // Good if CLKRATE =  48MHz
-		// {pps, ctr} <= ctr + 32'd172; // Good if CLKRATE =  25MHz
+		 {pps, ctr} <= ctr + 32'd228; // Good if CLKRATE =  25MHz
 
 	// Let's set an LED to reflect this once per second value, but also
 	// set it so that it is true for 1/4 of a second, turning on at the
