@@ -36,7 +36,7 @@
 ################################################################################
 ##
 ##
-all: helloworld speechfifo
+all: helloworld speechfifo echotest
 
 # GNU Make automatic variables (since I can never remember these ...)
 # $@	- name of the target
@@ -50,10 +50,10 @@ all: helloworld speechfifo
 	#icetime -d hx8k -c 100 $<
 	icepack $< $@
 
-.PHONY: helloworld speechfifo
+.PHONY: helloworld speechfifo echotest
 helloworld: helloworld.bin
 speechfifo: speechfifo.bin
-
+echotest: echotest.bin
 clean:
 	rm -f *.blif *.asc *.bin
 	rm -rf obj_dir
