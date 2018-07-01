@@ -5,7 +5,7 @@
 
 module VGA_Test_Pattterns_TB;
   
-  parameter c_VIDEO_WIDTH = 3; // 3 bits per pixel
+  parameter c_VIDEO_WIDTH = 2; // 2 bits per pixel was 3 bits
   parameter c_TOTAL_COLS  = 10;
   parameter c_TOTAL_ROWS  = 6;
   parameter c_ACTIVE_COLS = 8;
