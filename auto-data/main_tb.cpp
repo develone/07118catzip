@@ -86,7 +86,7 @@
 #define	cpu_new_pc	v__DOT__swic__DOT__thecpu__DOT__new_pc
 #define	cpu_sim_immv	v__DOT__swic__DOT__thecpu__DOT__op_sim_immv
 
-#define	block_ram	v__DOT__bkrami__DOT__mem
+#define         block_ram VVAR(_bkrami__DOT__mem)
 class	MAINTB : public TESTB<Vmain> {
 public:
 		// SIM.DEFNS

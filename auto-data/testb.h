@@ -75,6 +75,8 @@ public:
 			m_trace = new VerilatedVcdC;
 			m_core->trace(m_trace, 99);
 			m_trace->open(vcdname);
+			m_trace->set_time_resolution("ps");
+			m_trace->set_time_unit("ps");
 		}
 	}
 
