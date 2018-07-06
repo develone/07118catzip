@@ -48,7 +48,7 @@ all: sdram
 	arachne-pnr -d 8k -p $*.pcf -o $@ $<
 
 %.bin: %.asc
-	icetime -d hx8k -c 70 $<
+	#icetime -d hx8k -c 70 $<
 	icepack $< $@
 
 .PHONY: sdram
