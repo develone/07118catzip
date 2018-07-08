@@ -48,7 +48,7 @@ include auto.mk
 PCFFILE := catzip.pcf
 # toplevel.v rxuart.v txuart.v
 # rtcdate.v wbubus.v
-ICOSRCS := toplevel.v main.v $(WBUBUS) $(PPBUS) $(PPORT) cpu/catntrol.v memdev.v ufifo.v
+ICOSRCS := toplevel.v main.v $(WBUBUS) $(PPBUS) $(PPORT) cpu/icontrol.v memdev.v ufifo.v
 
 #
 # Verilator build from the main level.  This is not the toplevel verilog
@@ -89,7 +89,7 @@ design.h: main.v
 	@echo "#ifndef DESIGN_H" >> $@
 	@echo "#define DESIGN_H" >> $@
 	@echo >> $@
-	@grep "^\`" $< | grep -v default_nettype | grep -v include | sed -e '{ s/^`/#/ }' | sed -e ' s/main.v/design.h/' >> $@
+	@grep "^\`" $< | grep -v default_nettype | grep -v include | sed -e '{ s/^`/#/ }' | sed -e ' s/main.v/design.h/' | grep -v timescale >> $@
 	@echo >> $@
 	@echo "#endif // DESIGN_H" >> $@
 
@@ -104,8 +104,8 @@ bin: catzip.bin
 #
 #
 catzip.blif: toplevel.v $(VFLIST)
-	echo yosys -p 'synth_ice40 -blif catzip.blif -top toplevel' $^ |tee simple.log
-	yosys -p 'synth_ice40 -blif catzip.blif -top toplevel' $^ |tee -a simple.log
+	@echo yosys -ql simple.log -p 'synth_ice40 -blif catzip.blif -top toplevel' ...
+	@yosys -ql simple.log -p 'synth_ice40 -blif catzip.blif -top toplevel' $^
 
 .PHONY: yosys
 yosys: catzip.blif
@@ -145,6 +145,6 @@ clean:
 
 
 
-# yosys -p synth_ice40 -blif catzip.blif toplevel.v main.v wbubus/wbconsole.v wbubus/wbubus.v wbubus/wbucompactlines.v wbubus/wbucompress.v wbubus/wbuconsole.v wbubus/wbudecompress.v wbubus/wbudeword.v wbubus/wbuexec.v wbubus/wbufifo.v wbubus/wbuidleint.v wbubus/wbuinput.v wbubus/wbuoutput.v wbubus/wbureadcw.v wbubus/wbusixchar.v wbubus/wbutohex.v cpu/busdelay.v cpu/cpudefs.v cpu/cpuops.v cpu/dblfetch.v cpu/div.v cpu/catntrol.v cpu/idecode.v cpu/memops.v cpu/pfcache.v cpu/pipefetch.v cpu/pipemem.v cpu/prefetch.v cpu/wbarbiter.v cpu/wbdblpriarb.v cpu/wbdmac.v cpu/wbpriarbiter.v cpu/wbwatchdog.v cpu/zipbones.v cpu/zipcounter.v cpu/zipcpu.v cpu/zipjiffies.v cpu/zipsystem.v cpu/ziptimer.v ../pport/ppio.v ../pport/pport.v ../pport/wbpport.v memdev.v ufifo.v
+# yosys -p synth_ice40 -blif catzip.blif toplevel.v main.v wbubus/wbconsole.v wbubus/wbubus.v wbubus/wbucompactlines.v wbubus/wbucompress.v wbubus/wbuconsole.v wbubus/wbudecompress.v wbubus/wbudeword.v wbubus/wbuexec.v wbubus/wbufifo.v wbubus/wbuidleint.v wbubus/wbuinput.v wbubus/wbuoutput.v wbubus/wbureadcw.v wbubus/wbusixchar.v wbubus/wbutohex.v cpu/busdelay.v cpu/cpudefs.v cpu/cpuops.v cpu/dblfetch.v cpu/div.v cpu/icontrol.v cpu/idecode.v cpu/memops.v cpu/pfcache.v cpu/pipefetch.v cpu/pipemem.v cpu/prefetch.v cpu/wbarbiter.v cpu/wbdblpriarb.v cpu/wbdmac.v cpu/wbpriarbiter.v cpu/wbwatchdog.v cpu/zipbones.v cpu/zipcounter.v cpu/zipcpu.v cpu/zipjiffies.v cpu/zipsystem.v cpu/ziptimer.v ../pport/ppio.v ../pport/pport.v ../pport/wbpport.v memdev.v ufifo.v
 # arachne-pnr -d 8k -p catzip.pcf catzip.blif -o catzip.asc
 # icetime -d hx8k -c 75 catzip.asc
