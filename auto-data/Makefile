@@ -47,14 +47,15 @@ all:	data install
 # main project files.
 #
 DATA := global.txt bkram.txt buserr.txt clock.txt			\
-	dlyarbiter.txt pic.txt pwrcount.txt version.txt	\
-	hbconsole.txt gpio.txt zipbones.txt
-	# Not used: flash.txt rtclite.txt
+	pic.txt pwrcount.txt version.txt			\
+	hbconsole.txt gpio.txt dlyarbiter.txt zipbones.txt
+	# nodelay.txt
+	# Not used: flash.txt rtclite.txt watchdog.txt
 
-AUTOFPGA := ../../autofpga/sw/autofpga
+AUTOFPGA := autofpga
 
 .PHONY: data
-data: $(AUTOFPGA) $(DATA)
+data: $(DATA)
 	$(AUTOFPGA) -o . $(DATA)
 
 .PHONY: install
