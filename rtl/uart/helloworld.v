@@ -56,7 +56,7 @@ module	helloworld(i_clk,
 	// comms system from a 100MHz clock.  This also sets us to an 8-bit
 	// data word, 1-stop bit, and no parity.
 	wire	[29:0]	i_setup;
-	assign		i_setup = 30'd868;	// 115200 Baud, if clk @ 100MHz
+	assign		i_setup = 30'100;	// 115200 Baud, if clk @ 100MHz
 
 	reg	pwr_reset;
 	initial	pwr_reset = 1'b1;
@@ -233,7 +233,7 @@ endmodule
 //
 module txuart(i_clk, i_reset, i_setup, i_break, i_wr, i_data,
 		i_cts_n, o_uart_tx, o_busy);
-	parameter	[30:0]	INITIAL_SETUP = 31'd868;
+	parameter	[30:0]	INITIAL_SETUP = 31'd100;
 	input	wire		i_clk, i_reset;
 	input	wire	[30:0]	i_setup;
 	input	wire		i_break;

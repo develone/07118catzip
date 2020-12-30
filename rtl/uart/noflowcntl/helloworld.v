@@ -75,7 +75,7 @@ module	helloworld(i_clk,
 	// word, 1-stop bit, and no parity.  This will be overwritten by
 	// i_setup, but at least it gives us something to start with/from.
 	//parameter	INITIAL_UART_SETUP = 31'd50;
-	parameter	INITIAL_UART_SETUP = 31'd868;
+	parameter	INITIAL_UART_SETUP = 31'd100;
 
 	// The i_setup wires are input when run under Verilator, but need to
 	// be set internally if this is going to run as a standalone top level
@@ -145,7 +145,7 @@ module	helloworld(i_clk,
 
 `ifdef	USE_LITE_UART
 	txuartlite
-		#(24'd868)
+		#(24'd100)
 		transmitter(i_clk, tx_stb, tx_data, o_uart_tx, tx_busy);
 `else
 	txuart	transmitter(i_clk, pwr_reset, i_setup, tx_break,
@@ -270,7 +270,7 @@ endmodule
 //
 module txuart(i_clk, i_reset, i_setup, i_break, i_wr, i_data,
 		i_cts_n, o_uart_tx, o_busy);
-	parameter	[30:0]	INITIAL_SETUP = 31'd868;
+	parameter	[30:0]	INITIAL_SETUP = 31'd100;
 	input	wire		i_clk, i_reset;
 	input	wire	[30:0]	i_setup;
 	input	wire		i_break;

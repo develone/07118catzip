@@ -116,7 +116,7 @@ module	echotest(i_clk,
 	// This code only applies if OPT_DUMBECHO is not defined.
 `ifdef	OPT_STANDALONE
 	wire	[30:0]	i_setup;
-	assign		i_setup = 31'd868;	// 115200 Baud, if clk @ 100MHz
+	assign		i_setup = 31'd100;	// 115200 Baud, if clk @ 100MHz
 `endif
 
 	// Create a reset line that will always be true on a power on reset
@@ -144,7 +144,7 @@ module	echotest(i_clk,
 	// NOTE: this depends upon the Verilator implementation using a setup
 	// of 868, since we cannot change the setup of the RXUARTLITE module.
 	//
-	rxuartlite	#(24'd868)
+	rxuartlite	#(24'd100)
 		receiver(i_clk, i_uart_rx, rx_stb, rx_data);
 `else
 	rxuart	receiver(i_clk, pwr_reset, i_setup, i_uart_rx, rx_stb, rx_data,
@@ -161,7 +161,7 @@ module	echotest(i_clk,
 	// NOTE: this depends upon the Verilator implementation using a setup
 	// of 868, since we cannot change the setup of the TXUARTLITE module.
 	//
-	txuartlite #(24'd868)
+	txuartlite #(24'd100)
 		transmitter(i_clk, rx_stb, rx_data, o_uart_tx, tx_busy);
 `else
 	txuart	transmitter(i_clk, pwr_reset, i_setup, rx_break,
@@ -238,7 +238,7 @@ endmodule
 //
 //
 module txuartlite(i_clk, i_wr, i_data, o_uart_tx, o_busy);
-	parameter	[23:0]	CLOCKS_PER_BAUD = 24'd8; // 24'd868;
+	parameter	[23:0]	CLOCKS_PER_BAUD = 24'd8; // 24'd100;
 	input	wire		i_clk;
 	input	wire		i_wr;
 	input	wire	[7:0]	i_data;
@@ -561,7 +561,7 @@ endmodule
 `define	RXUL_IDLE		4'hf
 
 module rxuartlite(i_clk, i_uart_rx, o_wr, o_data);
-	parameter [23:0] CLOCKS_PER_BAUD = 24'd868;
+	parameter [23:0] CLOCKS_PER_BAUD = 24'd100;
 	input	wire		i_clk;
 	input	wire		i_uart_rx;
 	output	reg		o_wr;
